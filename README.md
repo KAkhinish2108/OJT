@@ -1,6 +1,6 @@
-# OJT
+# OJT CosaCode "Where Power runs on this Code"
 Simple Static Analyzer
-A Simple Static Analyzer. This is not merely software; it is a tool of order. We are not interested in guesswork. We are interested in absolute, unassailable truth.
+A Simple Static Analyzer i.e. CosaCode. This is not merely software; it is a tool of order. We are not interested in guesswork. We are interested in absolute, unassailable truth.
 
 This Code Cleaner prototype—it operates on the principle of a meticulous audit. It will take the source code, treat it like a financial statement, and tear it apart, piece by piece, using a Lexer and a Parser. This is how we build the Abstract Syntax Tree, capisce? That tree is the code's DNA. It tells us everything about its structure, without the mess of execution. It tells us the truth before the code has a chance to lie.
 
