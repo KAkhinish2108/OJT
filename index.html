@@ -1,224 +1,261 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>CosaCode</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" href="style.css">
-</head>
 
-<body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Omertà — A Code Of Silence</title>
 
-  <header>
-    <h1>🔎 CosaCode</h1>
-    <p><strong>Where Power Runs on this Code.</strong></p>
+        <link rel="stylesheet" href="style.css" />
 
-    <p>
-      <small>
-         An Analyzer Dashboard Designed & built with clarity, curiosity, and a bit of chaos.
-        <strong></strong>.
-        <br>
-      </small>
-    </p>
-    <hr>
-  </header>
+        <!-- Chart.js -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  <main>
+        <!-- Prism -->
+        <link href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-tomorrow.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1/prism.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-javascript.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-python.min.js"></script>
 
-    <!-- Analyzer Controls -->
-    <section aria-labelledby="controls">
-      <h2 id="controls">Analyzer Controls</h2>
-      <form method="post" aria-label="Analyzer form (demo)">
-        <label for="project">Project / File name:</label>
-        <input id="project" name="project" placeholder="example.py" aria-describedby="projectHelp">
-        <button type="submit" disabled>Analyze (Demo)</button>
-        <p id="projectHelp">
-          <small>Demo-only: make backend to enable upload & analysis.</small>
-        </p>
-      </form>
+        <!-- app script -->
+        <script type="module" src="minimal.js" defer></script>
 
-      <p>Overall quality: <meter min="0" max="100" value="84">84/100</meter></p>
-      <p>Scan progress: <progress value="55" max="100">55%</progress></p>
-      <hr>
-    </section>
+        <!-- PDF Download -->
 
-    <!-- Files & Tree -->
-    <section aria-labelledby="files">
-      <h2 id="files">Files & Tree</h2>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-      <details open>
-        <summary>src/</summary>
+    </head>
 
-        <details>
-          <summary>main.py — 124 lines</summary>
-          <ol>
-            <li>compute.py</li>
-            <li>helpers.py</li>
-          </ol>
-        </details>
+    <body>
 
-        <details>
-          <summary>lib/</summary>
-          <ol>
-            <li>utils.py</li>
-            <li>formatters.py</li>
-          </ol>
-        </details>
+        <nav class="navbar">
+            <div class="logo">Omertà</div>
+            <div class="nav-right">
+                <a href="#features">Features</a>
+                <a href="#about">About</a>
 
-      </details>
+                <button id="themeToggle" class="theme-btn"><span id="themeIcon">🌙</span></button>
+            </div>
+        </nav>
 
-      <details>
-        <summary>Open file preview</summary>
-        <pre><code># main.py (preview)
-def compute_angle(x, y):
-    tmp = x + y  # unused
-    return x / y
-</code></pre>
-      </details>
+        <header class="hero">
+            <div class="hero-content">
+                <h1>Next-Gen Static Code Analyzer</h1>
+                <p>
+                    Omertà is a lightweight and modern static analyzer designed for students,
+                    developers, and fast prototypes. Analyze JavaScript instantly — no backend,
+                    no setup, fully client-side.
+                </p>
+                <button class="primary-btn"
+                    onclick="document.getElementById('analyzerSection').scrollIntoView({behavior:'smooth'})">Try
+                    Analyzer →</button>
+            </div>
+        </header>
 
-      <hr>
-    </section>
+        <section class="features" id="features">
+            <h2>What Omertà Can Do</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3> Multi-Language Support</h3>
+                    <p>Analyze JavaScript, Python, TypeScript, Java, C++, HTML, CSS, and more.</p>
+                </div>
+                <div class="card">
+                    <h3> Python Analysis</h3>
+                    <p>Detect common Python issues: indentation, unused imports, long lines, and more.</p>
+                </div>
+                <div class="card">
+                    <h3> JavaScript Analysis</h3>
+                    <p>Detect common issues: spacing, unused logs, long lines, missing semicolons, and more.</p>
+                </div>
+                <div class="card">
+                    <h3> Fast & Client-Side</h3>
+                    <p>No server required. Everything runs inside your browser with instant results.</p>
+                </div>
+                <div class="card">
+                    <h3> Upload or Paste Code</h3>
+                    <p>Upload files or paste your JS code directly — the analyzer adapts automatically.</p>
+                </div>
+                <div class="card">
+                    <h3> Expandable Rules Engine</h3>
+                    <p>Build custom rules, add complexity, and scale the analyzer for future use cases.</p>
+                </div>
+            </div>
+        </section>
 
-    <!-- Summary -->
-    <section aria-labelledby="summary">
-      <h2 id="summary">Summary</h2>
-      <p><strong>Issues:</strong> 7 — <strong>High:</strong> 1 — <strong>Medium:</strong> 4 — <strong>Low:</strong> 2</p>
+        <section class="about" id="about">
+            <h2>About Omertà</h2>
+            <p>
+                Omertà is inspired by modern developer platforms like Vercel, Linear, and ESlint.
+                Clean UI, sharp typography, and frictionless functionality — the emphasis is on precision and clarity.
+                Built for developers, its architecture is simple, scalable, and designed for rapid iteration.
+            </p>
+        </section>
 
-      <!-- Donut Chart -->
-      <svg role="img" aria-label="health 78 percent" width="120" height="120" viewBox="0 0 42 42">
-        <circle r="15.9" cx="21" cy="21" fill="transparent" stroke="#eee" stroke-width="6"></circle>
-        <circle r="15.9" cx="21" cy="21" fill="transparent" stroke="#000" stroke-width="6" stroke-dasharray="78 22" stroke-linecap="round" transform="rotate(-90 21 21)"></circle>
-        <text x="21" y="23" font-size="6" text-anchor="middle" dominant-baseline="middle">78%</text>
-      </svg>
+        <section class="Analyzer" id="analyzer">
+            <div class="center-container">
+                <h1>Analyzer Demo Version</h1>
+                <p>Scroll down to try the integrated code analyzer below.</p>
+            </div>
+        </section>
 
-      <hr>
-    </section>
+        <section id="analyzerSection" style="margin-top:40px; padding-top:20px">
 
-    <!-- Issues Table -->
-    <section aria-labelledby="issues">
-      <h2 id="issues">Issues</h2>
+            <div class="bg-wrap">
+                <video class="bg-video" autoplay muted loop playsinline onerror="this.style.display='none'">
+                    <source src="bg.mp4" type="video/mp4" />
+                </video>
+                <canvas id="particles"></canvas>
+            </div>
 
-      <table border="1" cellpadding="6" cellspacing="0" summary="Detected issues">
-        <caption>Detected issues (sample)</caption>
+                <div class="left card">
 
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Rule</th>
-            <th>File</th>
-            <th>Line</th>
-            <th>Severity</th>
-            <th>Suggestion</th>
-          </tr>
-        </thead>
+                    <div class="controls">
+                        <div class="toolbar">
+                            <input id="fileInput" type="file" accept=".js,.py,.ts,.java,.cpp,.txt,.html,.css" />
+                            <button id="uploadBtn" class="btn ghost">Upload</button>
+                        </div>
 
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Unused variable</td>
-            <td>main.py</td>
-            <td>12</td>
-            <td>🔴 High</td>
-            <td>Remove <code>tmp</code> or use it.</td>
-          </tr>
+                        <div class="toolbar">
+                            <button id="analyzeBtn" class="btn primary">Analyze Now</button>
+                            <button id="demoBtn" class="btn ghost">Run Demo</button>
+                        </div>
 
-          <tr>
-            <td>2</td>
-            <td>Missing docstring</td>
-            <td>utils.py</td>
-            <td>1</td>
-            <td>🟠 Medium</td>
-            <td>Add module / function docstrings.</td>
-          </tr>
+                        <div style="margin-top:12px">
+                            <label class="small">Recent Files</label>
+                            <div id="recentFiles" class="files"></div>
+                        </div>
 
-          <tr>
-            <td>3</td>
-            <td>Inconsistent indent</td>
-            <td>helpers.py</td>
-            <td>45</td>
-            <td>🟠 Medium</td>
-            <td>Use 4 spaces consistently.</td>
-          </tr>
+                        <div style="margin-top:16px">
+                            <label class="small">Project Files</label>
+                            <div class="files">
+                                <details open>
+                                    <summary>src/</summary>
+                                    <div class="file-list">
+                                        <div class="file" data-name="main.py" data-sample>main.py</div>
+                                        <div class="file" data-name="helpers.py" data-sample>helpers.py</div>
+                                    </div>
+                                </details>
+                                <details>
+                                    <summary>lib/</summary>
+                                    <div class="file-list">
+                                        <div class="file" data-name="utils.js" data-sample>utils.js</div>
+                                        <div class="file" data-name="formatters.js" data-sample>formatters.js</div>
+                                    </div>
+                                </details>
+                            </div>
+                        </div>
 
-          <tr>
-            <td>4</td>
-            <td>Bad name</td>
-            <td>main.py</td>
-            <td>78</td>
-            <td>🟡 Low</td>
-            <td>Rename <code>a</code> → <code>angle_deg</code>.</td>
-          </tr>
-        </tbody>
-      </table>
+                    </div>
+                </div>
 
-      <p><small>Tip: add "severity" field to rule config for filtering.</small></p>
-      <hr>
-    </section>
+                <!-- CENTER EDITOR -->
+                <div class="center card">
 
-    <!-- Rules -->
-    <section aria-labelledby="rules">
-      <h2 id="rules">Rules (examples)</h2>
+                    <div style="display:flex;align-items:center;gap:12px">
+                        <div style="flex:1">
+                            <div style="font-weight:700">Editor</div>
+                            <div class="small">Paste code or upload a file. Syntax highlight preview below.</div>
+                        </div>
 
-      <details>
-        <summary>Unused variables</summary>
-        <p>Detect assigned names that are never accessed. Suggest removal or usage.</p>
-      </details>
+                        <div style="display:flex;gap:8px;align-items:center">
+                            <div class="small">Language</div>
+                            <select id="langSelect">
+                                <option value="javascript">JavaScript</option>
+                                <option value="python">Python</option>
+                                <option value="auto">Auto</option>
+                            </select>
+                        </div>
+                    </div>
 
-      <details>
-        <summary>Naming conventions</summary>
-        <p>Prefer <code>snake_case</code> for Python. Flag 1-letter names (except i, j).</p>
-      </details>
+                    <textarea id="codeInput" placeholder="Paste your code here..." spellcheck="false"></textarea>
 
-      <details>
-        <summary>Docstrings</summary>
-        <p>Public functions/modules should have docstrings (one-liners acceptable).</p>
-      </details>
+                    <div style="display:flex;gap:12px;align-items:center;justify-content:space-between">
+                        <div class="small">Live Preview</div>
+                        <div class="small">Issues: <span id="issueCount">0</span></div>
+                    </div>
 
-      <details>
-        <summary>Style/Spacing</summary>
-        <p>Trailing whitespace, mixed tabs/spaces, and long lines are flagged.</p>
-      </details>
+                    <pre
+                        id="preview"><code id="codePreview" class="language-javascript">// code preview appears here</code></pre>
 
-      <hr>
-    </section>
+                    <!-- Output / Results (rendered by minimal.js) -->
+                    <div id="output" class="analysis-output" style="margin-top:12px"></div>
 
-    <!-- Downloads -->
-    <section aria-labelledby="actions">
-      <h2 id="actions">Actions & Export</h2>
 
-      <p>
-        <a download="report.txt">Download sample report (TXT)</a> |
-        <a download="report.html">Download sample report (HTML)</a>
-      </p>
+                </div>
 
-      <form aria-label="Filter issues (demo)">
-        <label for="filter">Filter severity:</label>
-        <select id="filter" name="filter" disabled>
-          <option>All</option>
-          <option>High</option>
-          <option>Medium</option>
-          <option>Low</option>
-        </select>
-        <button> disabled Apply</button>
-      </form>
+                <!-- RIGHT DASHBOARD -->
+                <div class="right card">
 
-      <hr>
-    </section>
+                    <div style="display:flex;justify-content:space-between;align-items:center">
+                        <div>
+                            <div class="small">Code Health</div>
+                            <div class="score" style="display:flex;align-items:center;gap:12px">
+                                <div style="width:78px;height:78px;position:relative">
+                                    <canvas id="donut" width="78" height="78"></canvas>
+                                </div>
+                                <div>
+                                    <div class="num" id="healthNum">78</div>
+                                    <div class="small">/100</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-    <!-- About -->
-    <section aria-labelledby="about">
-      <h2 id="about">About this mock</h2>
-      <p>  
-         To make it functional: connect a server (Flask/Django) or client code that feeds data into the template.</p>
-    </section>
+                    <div style="margin-top:10px">
+                        <div class="small">Severity</div>
 
-  </main>
+                        <div class="severity-bars">
+                            <div class="small">High</div>
+                            <div class="bar"><i id="barHigh" style="width:10%"></i></div>
 
- <footer>
-   <p><small>© 2025 CosaCode.</small></p>
-   <p><a href="mailto:contact@cosacode.com">Contact Us</a></p>
- </footer>
+                            <div class="small">Medium</div>
+                            <div class="bar"><i id="barMed" style="width:40%"></i></div>
 
-</body>
+                            <div class="small">Low</div>
+                            <div class="bar"><i id="barLow" style="width:30%"></i></div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:8px">
+                        <div class="small">Quick Actions</div>
+                        <div style="display:flex;gap:8px;margin-top:8px">
+                            <button id="fixAllBtn" class="btn ghost">Auto-Fix (basic)</button>
+                            <button id="clearBtn" class="btn ghost">Clear</button>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:10px">
+                        <div class="small">Recent Analysis</div>
+                        <div id="history" style="margin-top:8px"></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Sliding Panel -->
+            <div id="resultsPanel" class="results-panel hidden" role="region" aria-label="Analysis results">
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                    <strong>Analysis Results</strong>
+                    <button id="closePanel" class="btn ghost">Close</button>
+                </div>
+
+                <div id="resultsList" style="margin-top:12px"></div>
+
+                <div class="panel-actions">
+                    <button id="copyReport" class="btn ghost">Copy</button>
+                    <button id="downloadTxt" class="btn ghost">Download TXT</button>
+                    <button id="downloadPdf" class="btn ghost">Download PDF</button>
+
+                </div>
+            </div>
+
+        </section>
+
+        <footer>
+            <p>© 2025 Omertà Built with precision, crafted with intent.</p>
+        </footer>
+
+    </body>
+
 </html>
-
