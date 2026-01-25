@@ -1,4 +1,4 @@
-# OJT Omertà "A Code Of Silence"
+# OJT Omertà: "A Code Of Silence"
 Simple Static Analyzer
 A Simple Static Analyzer.This is not merely software; it is a tool of order. We are not interested in guesswork. We are interested in absolute, unassailable truth.
 
